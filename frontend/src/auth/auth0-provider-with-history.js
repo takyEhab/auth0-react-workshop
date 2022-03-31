@@ -14,6 +14,25 @@ const Auth0ProviderWithHistory = ({ children }) => {
     history.push(appState?.returnTo || window.location.pathname);
   };
 
+  const sessionStorageCache = {
+    get: function (key) {
+      return JSON.parse(sessionStorage.getItem(key));
+    },
+
+    set: function (key, value) {
+      sessionStorage.setItem(key, JSON.stringify(value));
+    },
+
+    remove: function (key) {
+      sessionStorage.removeItem(key);
+    },
+
+    // Optional
+    allKeys: function () {
+      return Object.keys(sessionStorage);
+    }
+  };
+
   return (
     <Auth0Provider
       domain={domain}
@@ -21,6 +40,12 @@ const Auth0ProviderWithHistory = ({ children }) => {
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
       audience={audience}
+      // cache={sessionStorageCache}
+      // cacheLocation: 'localstorage'
+    cacheLocation="localstorage"
+
+    // authorizeTimeoutInSecond={20}
+    // useRefreshTokens={true}
     >
       {children}
     </Auth0Provider>

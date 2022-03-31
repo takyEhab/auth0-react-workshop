@@ -2,11 +2,11 @@
 
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 import { NavBar,
    Footer,
-    Loading
+    // Loading
    } from "./components";
 import { Home, Profile, ExternalApi } from "./views";
 import ProtectedRoute from "./auth/protected-route";
